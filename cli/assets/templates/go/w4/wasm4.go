@@ -32,6 +32,7 @@ var (
 	MOUSE_BUTTONS = (*uint8)(unsafe.Pointer(uintptr(0x1e)))
 	SYSTEM_FLAGS  = (*uint8)(unsafe.Pointer(uintptr(0x1f)))
 	NETPLAY       = (*uint8)(unsafe.Pointer(uintptr(0x20)))
+	TIMESTAMP     = (*uint64)(unsafe.Pointer(uintptr(0x21)));
 	FRAMEBUFFER   = (*[6400]uint8)(unsafe.Pointer(uintptr(0xa0)))
 )
 

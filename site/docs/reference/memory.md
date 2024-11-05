@@ -18,7 +18,8 @@ WASM-4 uses a fixed memory layout of 64 KB.
 | `$001e` | 1            | [MOUSE_BUTTONS](#mouse_buttons) |
 | `$001f` | 1            | [SYSTEM_FLAGS](#system_flags)   |
 | `$0020` | 1            | [NETPLAY](#netplay)             |
-| `$0021` | 127          | Reserved for future use         |
+| `$0021` | 8            | [TIMESTAMP](#timestamp)         |
+| `$0029` | 127          | Reserved for future use         |
 | `$00a0` | 6400         | [FRAMEBUFFER](#framebuffer)     |
 | `$19a0` | 58976        | Available program memory        |
 
@@ -115,6 +116,10 @@ Byte containing netplay multiplayer state.
 | ---   | ---                                 |
 | 0 - 1 | Local player index (0 to 3).        |
 | 2     | Set if netplay is currently active. |
+
+### TIMESTAMP
+
+Unsigned 64 bit integer representing the unix timestamp of when the runtime was started.
 
 ### FRAMEBUFFER
 

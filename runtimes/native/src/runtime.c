@@ -2,6 +2,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <time.h>
 
 #include "apu.h"
 #include "framebuffer.h"
@@ -24,7 +25,8 @@ typedef struct {
     int16_t mouseY;
     uint8_t mouseButtons;
     uint8_t systemFlags;
-    uint8_t _reserved[128];
+    uint64_t timestamp;
+    uint8_t _reserved[120];
     uint8_t framebuffer[WIDTH*HEIGHT>>2];
     uint8_t _user[58976];
 } Memory;
@@ -55,6 +57,7 @@ void w4_runtimeInit (uint8_t* memoryBytes, w4_Disk* diskBytes) {
     memory->drawColors[1] = 0x12;
     w4_write16LE(&memory->mouseX, 0x7fff);
     w4_write16LE(&memory->mouseY, 0x7fff);
+    m3ApiWriteMem64(&memory->timestamp, (uint64_t)(time(NULL)));
 
     w4_apuInit();
     w4_framebufferInit(memory->drawColors, memory->framebuffer);

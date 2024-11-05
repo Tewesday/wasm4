@@ -27,6 +27,7 @@ pub const MOUSE_Y: *const i16 = @ptrFromInt(0x1c);
 pub const MOUSE_BUTTONS: *const u8 = @ptrFromInt(0x1e);
 pub const SYSTEM_FLAGS: *u8 = @ptrFromInt(0x1f);
 pub const NETPLAY: *const u8 = @ptrFromInt(0x20);
+pub const TIMESTAMP: *u64 = @ptrFromInt(0x21);
 pub const FRAMEBUFFER: *[6400]u8 = @ptrFromInt(0xA0);
 
 pub const BUTTON_1: u8 = 1;

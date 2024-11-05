@@ -37,6 +37,7 @@ WASM_EXPORT("update") void update ();
 #define MOUSE_BUTTONS ((const uint8_t*)0x1e)
 #define SYSTEM_FLAGS ((uint8_t*)0x1f)
 #define NETPLAY ((const uint8_t*)0x20)
+#define TIMESTAMP ((uint64_t*)0x21)
 #define FRAMEBUFFER ((uint8_t*)0xa0)
 
 #define BUTTON_1 1

@@ -86,6 +86,10 @@ export class Runtime {
         this.data.setUint8(constants.ADDR_NETPLAY, 0b100 | (localPlayerIdx & 0b11));
     }
 
+    getTimestamp (mask: number) {
+        return this.data.getUint32(constants.ADDR_TIMESTAMP) & mask;
+    }
+
     getSystemFlag (mask: number) {
         return this.data.getUint8(constants.ADDR_SYSTEM_FLAGS) & mask;
     }
@@ -111,6 +115,11 @@ export class Runtime {
         // Initialize the mouse off screen
         this.data.setInt16(constants.ADDR_MOUSE_X, 0x7fff, true);
         this.data.setInt16(constants.ADDR_MOUSE_Y, 0x7fff, true);
+
+        // Set the timestamp in seconds
+        const currentDate = new Date();
+        const timestamp = Math.floor(currentDate.getTime() / 1000);
+        this.data.setUint32(constants.ADDR_TIMESTAMP, timestamp, true);
     }
 
     async load (wasmBuffer: Uint8Array, enforceSizeLimit = true) {

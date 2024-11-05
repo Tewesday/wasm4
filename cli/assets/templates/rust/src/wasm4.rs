@@ -29,6 +29,7 @@ pub const MOUSE_Y: *const i16 = 0x1c as _;
 pub const MOUSE_BUTTONS: *const u8 = 0x1e as _;
 pub const SYSTEM_FLAGS: *mut u8 = 0x1f as _;
 pub const NETPLAY: *const u8 = 0x20 as _;
+pub const TIMESTAMP: *mut u64 = 0x21 as *mut u64;
 pub const FRAMEBUFFER: *mut [u8; 6400] = 0xa0 as _;
 
 pub const BUTTON_1: u8 = 1;

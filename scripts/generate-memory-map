@@ -20,8 +20,9 @@ const memory = {
 
     SYSTEM_FLAGS: 1, // 0x1f
     NETPLAY: 1, // 0x20
+    TIMESTAME: 8, // 0x21
 
-    _RESERVED: 127,
+    _RESERVED: 119,
 
     // Framebuffer should be 64 bit aligned
     FRAMEBUFFER: FRAMEBUFFER_SIZE_BYTES, // 0xa0
@@ -39,6 +40,7 @@ const cTypes = {
     MOUSE_BUTTONS: "const uint8_t",
     SYSTEM_FLAGS: "uint8_t",
     NETPLAY: "const uint8_t",
+    TIMESTAMP: "uint64_t",
     FRAMEBUFFER: "uint8_t",
 };
 
@@ -54,6 +56,7 @@ const rustTypes = {
     MOUSE_BUTTONS: "*const u8",
     SYSTEM_FLAGS: "*mut u8",
     NETPLAY: "*const u8",
+    TIMESTAMP: "*mut u64",
     FRAMEBUFFER: "*mut [u8; 6400]",
 };
 
@@ -69,6 +72,7 @@ const goTypes = {
     MOUSE_BUTTONS: "uint8",
     SYSTEM_FLAGS: "uint8",
     NETPLAY: "uint8",
+    TIMESTAMP: "uint64",
     FRAMEBUFFER: "[6400]uint8",
 };
 
@@ -84,6 +88,7 @@ const neluaTypes = {
     MOUSE_BUTTONS: "uint8",
     SYSTEM_FLAGS: "uint8",
     NETPLAY: "uint8",
+    TIMESTAMP: "uint64",
     FRAMEBUFFER: "[6400]uint8",
 };
 
