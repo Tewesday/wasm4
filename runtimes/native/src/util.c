@@ -61,6 +61,15 @@ uint32_t w4_read32LE (const uint32_t* ptr) {
 #endif
 }
 
+uint64_t w4_read64LE (const uint64_t* ptr) {
+#ifdef W4_BIG_ENDIAN
+    return bswap64(*ptr);
+#else
+    return *ptr;
+#endif
+}
+
+
 void w4_write16LE (uint16_t* ptr, uint16_t value) {
 #ifdef W4_BIG_ENDIAN
     *ptr = bswap16(value);
