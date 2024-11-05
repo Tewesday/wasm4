@@ -17,8 +17,8 @@ WASM-4 uses a fixed memory layout of 64 KB.
 | `$001c` | 2            | [MOUSE_Y](#mouse_y)             |
 | `$001e` | 1            | [MOUSE_BUTTONS](#mouse_buttons) |
 | `$001f` | 1            | [SYSTEM_FLAGS](#system_flags)   |
-| `$0020` | 1            | [NETPLAY](#netplay)             |
-| `$0021` | 8            | [TIMESTAMP](#timestamp)         |
+| `$0020` | 8            | [TIMESTAMP](#timestamp)         |
+| `$0028` | 1            | [NETPLAY](#netplay)             |
 | `$0029` | 127          | Reserved for future use         |
 | `$00a0` | 6400         | [FRAMEBUFFER](#framebuffer)     |
 | `$19a0` | 58976        | Available program memory        |
@@ -108,6 +108,10 @@ Byte containing flags that modify WASM-4's operation. By default all flags are o
 | 0   | `SYSTEM_PRESERVE_FRAMEBUFFER` | Prevent clearing the framebuffer between frames.  |
 | 1   | `SYSTEM_HIDE_GAMEPAD_OVERLAY` | Hide the gamepad UI overlay on mobile.            |
 
+### TIMESTAMP
+
+Unsigned 64 bit integer representing the unix timestamp of when the runtime was started.
+
 ### NETPLAY
 
 Byte containing netplay multiplayer state.
@@ -116,10 +120,6 @@ Byte containing netplay multiplayer state.
 | ---   | ---                                 |
 | 0 - 1 | Local player index (0 to 3).        |
 | 2     | Set if netplay is currently active. |
-
-### TIMESTAMP
-
-Unsigned 64 bit integer representing the unix timestamp of when the runtime was started.
 
 ### FRAMEBUFFER
 

@@ -26,7 +26,8 @@ typedef struct {
     uint8_t mouseButtons;
     uint8_t systemFlags;
     uint64_t timestamp;
-    uint8_t _reserved[120];
+    uint8_t netplay;
+    uint8_t _reserved[119];
     uint8_t framebuffer[WIDTH*HEIGHT>>2];
     uint8_t _user[58976];
 } Memory;

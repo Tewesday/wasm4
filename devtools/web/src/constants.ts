@@ -17,7 +17,9 @@ export const ADDR_MOUSE_X = 0x1a;
 export const ADDR_MOUSE_Y = 0x1c;
 export const ADDR_MOUSE_BUTTONS = 0x1e;
 export const ADDR_SYSTEM_FLAGS = 0x1f;
-export const ADDR_TIMESTAMP = 0x21;
+export const ADDR_TIMESTAMP = 0x20;
+export const ADDR_NETPLAY = 0x28;
+export const ADDR_RESERVED = 0x29;
 export const ADDR_FRAMEBUFFER = 0xa0;
 
 export const BUTTON_X = 1;
@@ -88,9 +90,13 @@ export const memoryMap: Readonly<Record<string, Range>> = {
     offset: ADDR_TIMESTAMP,
     len: 8,
   },
+  NETPLAY: {
+    offset: ADDR_NETPLAY,
+    len: 1,
+  },
   RESERVED: {
-    offset: 0x0020,
-    len: 120,
+    offset: ADDR_RESERVED,
+    len: 119,
   },
   FRAMEBUFFER: {
     offset: ADDR_FRAMEBUFFER,

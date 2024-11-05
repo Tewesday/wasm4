@@ -19,8 +19,8 @@ const memory = {
     MOUSE_BUTTONS: 1, // 0x1e
 
     SYSTEM_FLAGS: 1, // 0x1f
-    NETPLAY: 1, // 0x20
-    TIMESTAME: 8, // 0x21
+    TIMESTAMP: 8, // 0x20
+    NETPLAY: 1, // 0x28
 
     _RESERVED: 119,
 
@@ -39,8 +39,8 @@ const cTypes = {
     MOUSE_Y: "const int16_t",
     MOUSE_BUTTONS: "const uint8_t",
     SYSTEM_FLAGS: "uint8_t",
-    NETPLAY: "const uint8_t",
     TIMESTAMP: "uint64_t",
+    NETPLAY: "const uint8_t",
     FRAMEBUFFER: "uint8_t",
 };
 
@@ -55,8 +55,8 @@ const rustTypes = {
     MOUSE_Y: "*const i16",
     MOUSE_BUTTONS: "*const u8",
     SYSTEM_FLAGS: "*mut u8",
-    NETPLAY: "*const u8",
     TIMESTAMP: "*mut u64",
+    NETPLAY: "*const u8",
     FRAMEBUFFER: "*mut [u8; 6400]",
 };
 
@@ -71,8 +71,8 @@ const goTypes = {
     MOUSE_Y: "int16",
     MOUSE_BUTTONS: "uint8",
     SYSTEM_FLAGS: "uint8",
-    NETPLAY: "uint8",
     TIMESTAMP: "uint64",
+    NETPLAY: "uint8",
     FRAMEBUFFER: "[6400]uint8",
 };
 
@@ -87,8 +87,8 @@ const neluaTypes = {
     MOUSE_Y: "int16",
     MOUSE_BUTTONS: "uint8",
     SYSTEM_FLAGS: "uint8",
-    NETPLAY: "uint8",
     TIMESTAMP: "uint64",
+    NETPLAY: "uint8",
     FRAMEBUFFER: "[6400]uint8",
 };
 
