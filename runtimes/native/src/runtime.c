@@ -57,7 +57,7 @@ void w4_runtimeInit (uint8_t* memoryBytes, w4_Disk* diskBytes) {
     memory->drawColors[1] = 0x12;
     w4_write16LE(&memory->mouseX, 0x7fff);
     w4_write16LE(&memory->mouseY, 0x7fff);
-    m3ApiWriteMem64(&memory->timestamp, (uint64_t)(time(NULL)));
+    w4_write64LE(&memory->timestamp, (uint64_t)(time(NULL)));
 
     w4_apuInit();
     w4_framebufferInit(memory->drawColors, memory->framebuffer);

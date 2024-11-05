@@ -45,12 +45,10 @@ jobs:
                   ldd --version
                   sudo apt update
                   sudo apt install libxrandr-dev libxinerama-dev libxcursor-dev libxi-dev libxext-dev libxkbcommon-dev libasound2-dev libpulse-dev
-
             - name: Build
               run: |
                   cmake -B build -DCMAKE_BUILD_TYPE=Release -DWASM_BACKEND=${{ matrix.wasm_backend }}
                   cmake --build build --config Release --parallel
-
             - name: Install
               run: cmake --install build --prefix instdir --config Release --strip || true
 
@@ -85,12 +83,10 @@ jobs:
               run: |
                   npm ci
                   npm run build
-
             - name: Import web runtime
               run: |
                   rm -f assets/runtime
                   cp -r ../runtimes/web/dist assets/runtime
-
             - name: Download artifacts
               uses: actions/download-artifact@v4.1.8
               with:
@@ -114,10 +110,8 @@ jobs:
                   cp ../README.md ../LICENSE.txt .
                   mkdir -p ../cli-build
                   mv `npm pack` ../cli-build/wasm4-npm.tar.gz
-
                   npm ci
                   npm run package
-
             - name: Quick w4 CLI tests
               run: |
                   W4=../cli-build/wasm4-linux
@@ -130,7 +124,6 @@ jobs:
                     --linux /tmp/test-w4/cart-linux \
                     --windows /tmp/test-w4/cart-windows.exe \
                     --mac /tmp/test-w4/cart-mac \
-
             - name: Upload artifacts
               uses: actions/upload-artifact@v4.4.0
               with:
@@ -157,36 +150,9 @@ jobs:
             - name: Create release zips
               run: |
                   chmod +x artifacts/wasm4-*
-
                   mv artifacts/wasm4-win.exe w4.exe
                   zip w4-windows.zip w4.exe
-
                   mv artifacts/wasm4-macos w4
                   zip w4-mac.zip w4
-
                   mv artifacts/wasm4-linux w4
                   zip w4-linux.zip w4
-
-            - name: Publish GitHub release
-              uses: softprops/action-gh-release@v1
-              with:
-                  files: w4-*.zip
-
-            - name: Publish to NPM
-              run: |
-                  npm config set //registry.npmjs.org/:_authToken=$NPM_TOKEN
-                  npm publish ./artifacts/wasm4-npm.tar.gz
-              env:
-                  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-            - name: Publish to the Internet Archive
-              run: |
-                  sudo apt update
-                  sudo apt install internetarchive
-
-                  version=`git describe --tags`
-                  git ls-files --recurse-submodules | tar caf "/tmp/wasm4-$version.tar.gz" --xform "s:^:wasm4-$version/:" --verbatim-files-from -T-
-                  ia configure --username="b@aduros.com" --password="$IA_PASSWORD"
-                  ia upload wasm4-source "/tmp/wasm4-$version.tar.gz"
-              env:
-                  IA_PASSWORD: ${{ secrets.IA_PASSWORD }}
